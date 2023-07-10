@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting</title>
+</head>
+<body>
+<form th:action="@{/test}">
+    <label>ユーザネーム</label>
+    <input type="text" name="name"/>
+    <label>ユーザ年齢</label>
+    <input type="text" name="age"/>
+    <input type="submit" value="送信">
+    <div>
+        <h1>送信した値が以下となります。</h1>
+        <p>ユーザネーム：<span th:text="${user_id}"></span></p>
+        <p>ユーザネーム：<span th:text="${user_name}"></span></p>
+        <p>ユーザ年齢：<span th:text="${user_age}"></span></p>
+    </div>
+</form>
+
+<div>
+    <h2>ユーザ管理画面</h2>
+    <table border="1" style="border-collapse:collapse">
+        <thead>
+        <tr>
+            <th>ユーザID</th>
+            <th>ユーザ名</th>
+            <th>ユーザ年齢</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account: ${users}">
+            <td th:text="${account.id}"></td>
+            <td th:text="${account.name}"></td>
+            <td th:text="${account.age}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

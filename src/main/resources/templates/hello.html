@@ -1,0 +1,15 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello,World</title>
+</head>
+<body>
+    <h1>これはログイン後の画面です。</h1>
+    <a th:href="@{/logout}"><p>ログアウト画面はこちら</p></a>
+    <p>または下記ボタンを押下してください。</p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="SignOut" />
+    </form>
+</body>
+</html>

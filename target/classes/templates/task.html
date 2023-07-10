@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/task.css}">
+    <title>タスク管理アプリケーション</title>
+</head>
+
+<body>
+<h1>タスク管理ページ</h1>
+<div class="task_form">
+    <h2>タスクの登録</h2>
+
+    <form th:action="@{/add}">
+        <label>タスク</label>
+        <input type="text" name="task"/>
+        <label>期限</label>
+        <input type="date" name="deadline"/>
+        <input type="submit" value="登録">
+    </form>
+</div>
+
+<div class="tasklist">
+    <h2>現在のタスク一覧</h2>
+    <table border="1" style="border-collapse:collapse">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>タスク</th>
+            <th width="150px">期限</th>
+            <th width="100px">状態</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task: ${taskList}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.task}"></td>
+            <td th:text="${task.deadline}" width="100px"></td>
+            <td th:text="${task.done ? '完了' : '未完了'}" width="50px"></td>
+            <td width="50px">
+                <form th:action="@{/delete}">
+                    <button type="submit" id="delete_button">削除</button>
+                    <input type="hidden" name="id" th:value="${task.id}"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--テストのため、後から削除-->
+<div>
+    <h3>タスクの更新はこちらから</h3>
+    <p>下記からタスクのIDを入力し、タスクを更新してください。</p>
+    <form th:action="@{/update}">
+        <label>タスクのID</label>
+        <input type="text" name="id"/>
+        <label>タスク</label>
+        <input type="text" name="task"/>
+        <label>期限</label>
+        <input type="date" name="deadline"/>
+        <input type="submit" value="更新"/>
+    </form>
+</div>
+<div class="logout">
+    <a th:href="@{/logout}">
+        <p>ログアウトはこちら</p>
+    </a>
+    <h4>または下記の「LogOut」ボタンからログアウトしてください</h4>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out"/>
+    </form>
+</div>
+</body>
+</html>
