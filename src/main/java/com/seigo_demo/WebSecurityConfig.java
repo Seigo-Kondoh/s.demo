@@ -1,5 +1,4 @@
 package com.seigo_demo;
-
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +19,8 @@ public class WebSecurityConfig {
         http
            /*     h2-consoleへのアクセスを認証なしで見るためコード(※本番環境時には削除)
                 本番時にはcsrfを有効にする*/
-                .securityMatcher("/h2-console/")
-                .csrf((csrf) -> csrf.disable())
+//                .securityMatcher("/h2-console/")
+//                .csrf((csrf) -> csrf.disable())
                 .headers((headers) -> headers.frameOptions((frame) -> frame.sameOrigin()))
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/home").permitAll()
